@@ -1,0 +1,9 @@
+[book]
+authors = ["Cian O'Connor"]
+multilingual = false
+src = "src"
+title = "A Guide to Synthesis in SuperCollider"
+
+[build]
+build-dir = "../../books/synthesis"
+create-missing = false

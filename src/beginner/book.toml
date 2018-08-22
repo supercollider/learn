@@ -1,0 +1,9 @@
+[book]
+authors = ["Cian O'Connor"]
+multilingual = false
+src = "src"
+title = "A Beginners Guide to SuperCollider"
+
+[build]
+build-dir = "../../books/beginner"
+create-missing = false

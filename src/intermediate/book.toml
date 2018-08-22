@@ -1,0 +1,9 @@
+[book]
+authors = ["Cian O'Connor"]
+multilingual = false
+src = "src"
+title = "A SuperCollider Programming Tutorial"
+
+[build]
+build-dir = "../../books/intermediate"
+create-missing = false

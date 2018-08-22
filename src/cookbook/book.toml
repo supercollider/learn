@@ -1,0 +1,9 @@
+[book]
+authors = ["Cian O'Connor"]
+multilingual = false
+src = "src"
+title = "The SuperCollider Cookbook"
+
+[build]
+build-dir = "../../books/cookbook"
+create-missing = false
