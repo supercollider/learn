@@ -210,7 +210,7 @@ Pbind(
 )
 ```
 
-Or if you prefer, you can use ```+++``` to combine the patterns:
+Or if you prefer, you can use ```++``` to combine the patterns:
 
 ```
 (
