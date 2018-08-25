@@ -45,9 +45,9 @@ Attribution-ShareAlike 4.0 International License.
 You should have received a copy of the license along with this work.  If not,
 see <http://creativecommons.org/licenses/by-sa/4.0/>.
 
-[mdBook Guide]: https://rust-lang-nursery.github.io/mdBook/ [mdBook]:
-https://github.com/rust-lang-nursery/mdBook [forum]: https://scsynth.org/
-[slack]:
-https://join.slack.com/t/scsynth/shared_invite/enQtMzk3OTY3MzE0MTAyLWY1ZGE1MTJjYmI5NTRkZjFmNjZmNmYxOWI0NDZkNjdkMzdkNjgxNTJhZGVlOTEwYjdjMDY5OWM0ZTA4NWFiOGY
-[gitbook]: https://toolchain.gitbook.com/ [markdown]:
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+[mdBook Guide]: https://rust-lang-nursery.github.io/mdBook/
+[mdBook]: https://github.com/rust-lang-nursery/mdBook
+[forum]: https://scsynth.org/
+[slack]: https://join.slack.com/t/scsynth/shared_invite/enQtMzk3OTY3MzE0MTAyLWY1ZGE1MTJjYmI5NTRkZjFmNjZmNmYxOWI0NDZkNjdkMzdkNjgxNTJhZGVlOTEwYjdjMDY5OWM0ZTA4NWFiOGY
+[gitbook]: https://toolchain.gitbook.com/
+[markdown]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
