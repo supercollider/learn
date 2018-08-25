@@ -1,32 +1,45 @@
 # Super Collider Tutorials
-The repository for the official SuperCollider online tutorial and reference information. Currently this is in the early stages of development. 
+The repository for the official SuperCollider online tutorial and reference information. Currently
+this is in the early stages of development.
 
 Get Involved
 -------
 
-If you want to get involved then contact us either on the [SuperCollider Forum][forum] or the [SuperCollider Slack][slack] channel. Any level of involvement is fine. If you want to write a tutorial by yourself then we won't stop you - equally if all you can do is proof read, or suggest resources, that's also helpful.
+If you want to get involved then contact us either on the [SuperCollider Forum][forum] or the
+[SuperCollider Slack][slack] channel. Any level of involvement is fine. If you want to write a
+tutorial by yourself then we won't stop you - equally if all you can do is proof read, or suggest
+resources, that's also helpful.
+
+Tutorial Standards
+--------
+
+Documents should have a max line length of 100 columns and be written in markdown.
+
+Code should follow the SuperCollider style guidelines here:
+https://github.com/supercollider/supercollider/wiki/Code-style-guidelines
+
+Cookbook entries should address a particular problem that people might run into and show them how
+it can be solved. It is perfectly okay to show multiple solutions, but these _must_ be practical
+solutions. 
 
 Requirements
 -------
 
-The tutorials are currently built using [mdBook]. On Windows and Linux you
-just need to download the binary from their site and update your path so that
-it points to it. Unfortunately they do not have a download available for OSX.
-Fortunately building MDBook is super easy (just follow the instructions). If
-for some reason you are unable to build it - then contact me on [Slack][slack]
+The tutorials are currently built using [mdBook]. On Windows and Linux you just need to download
+the binary from their site and update your path so that it points to it. Unfortunately they do not
+have a download available for OSX. Fortunately building MDBook is super easy (just follow the
+instructions). If for some reason you are unable to build it - then contact me on [Slack][slack]
 and I'll send you a binary.
 
 Build
 -------
 
-[mdBook] is a clone of the original [gitbook] and uses [markdown]. So long as
-you're familiar with [markdown] then you really shouldn't have any issues as
-the [mdBook guide] is pretty decent.
+[mdBook] is a clone of the original [gitbook] and uses [markdown]. So long as you're familiar with
+[markdown] then you really shouldn't have any issues as the [mdBook guide] is pretty decent.
 
-Currently there are four tutorials in the src file. The tutorials are built
-separately (this will change at some future point). The src code for each book
-is in ```src/[book-name]```. The html will be generated in a sub-folder of the
-```book``` directory in the root folder.
+Currently there are four tutorials in the src file. The tutorials are built separately (this will
+change at some future point). The src code for each book is in ```src/[book-name]```. The html will
+be generated in a sub-folder of the ```book``` directory in the root folder.
 
 Useful commands:
 
