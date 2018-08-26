@@ -92,8 +92,9 @@ num3.debug("num3");
 )
 ```
 
-The above works as you expect, but it can be written more concise because `debug` returns the
-variable it printed.
+The above calls to debug work as you expect, but they can be written more concise because `debug` returns the
+variable it prints. Here's how you can call `debug` directly in the formula, without the need to introduce
+additional lines of code.
 
 ```supercollider
 (
@@ -106,7 +107,7 @@ var num3 = 3;
 The postln still prints 9, so the debug calls have not influenced the calculations.  In simple
 examples like the above, this "optimization" may seem a little silly, but when you're debugging
 complex calculations, you'll be glad you don't have to restructure your code just to print out some
-intermediate values.
+intermediate value.
 
 _Spoiler: the actual problem in this case is not some weird memory corruption or compiler bug as you
 might think, but the eccentric operator precedence that SuperCollider uses. It first calculates num
