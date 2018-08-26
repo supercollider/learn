@@ -1,4 +1,4 @@
-# Chapter 1 Debugging techniques 
+#Chapter 1 Debugging techniques 
 In a perfect world every line of code you type in immediately works as expected.  If you are like
 most people, however, you will make tons of mistakes. SuperCollider does not have a built-in
 debugger. So how do we go about debugging problems? We'll go over some ways to debug your
@@ -53,9 +53,9 @@ txt.class.postln; // String
 (num + txt).class.postln; // String
 pat.class.postln; // Pbind
 fork {
-	player.class.postln; // EventStreamPlayer
-	3.wait;
-	player.stop;
+    player.class.postln; // EventStreamPlayer
+    3.wait;
+    player.stop;
 }
 )
 ```
@@ -247,7 +247,7 @@ s.waitForBoot({
         }),
         \midinote, Pbrown(40,70,1,inf)
     );
-	~player = pat1.play;
+    ~player = pat1.play;
 });
 )
 ```
@@ -275,17 +275,17 @@ s.waitForBoot({
 
     // specify what a wobble looks like
     SynthDef(\wobble, {
-		var out=\out.kr(0), freq=\freq.kr(440), amp=\amp.kr(0.1);
-		var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
-		var sig = amp*env*SinOsc.ar(3).range(0.5,1)*SinOsc.ar(freq);
-		Out.ar(out, sig!2);
-	}).add;
-	
+        var out=\out.kr(0), freq=\freq.kr(440), amp=\amp.kr(0.1);
+        var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
+        var sig = amp*env*SinOsc.ar(3).range(0.5,1)*SinOsc.ar(freq);
+        Out.ar(out, sig!2);
+    }).add;
+    
     // make sure the synth has arrived on the server before continuing
-	s.sync;
-	
+    s.sync;
+    
     // play a wobble
-	Synth(\wobble); 
+    Synth(\wobble); 
 });
 )
 ```
@@ -300,17 +300,17 @@ s.waitForBoot({
 
     // specify what a wobble looks like
     SynthDef(\wobble, {
-		var out = \out.kr(0), freq = \freq.kr(440), amp = \amp.kr(0.1);
-		var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
-		var sig = amp*env*SinOsc.ar(3).range(0.5,1).poll*SinOsc.ar(freq);
-		Out.ar(out, sig!2);
-	}).add;
-	
+        var out = \out.kr(0), freq = \freq.kr(440), amp = \amp.kr(0.1);
+        var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
+        var sig = amp*env*SinOsc.ar(3).range(0.5,1).poll*SinOsc.ar(freq);
+        Out.ar(out, sig!2);
+    }).add;
+    
     // make sure the synth has arrived on the server before continuing
-	s.sync;
-	
+    s.sync;
+    
     // play a wobble
-	Synth(\wobble); 
+    Synth(\wobble); 
 });
 )
 ```
@@ -324,16 +324,16 @@ instead, you could slightly restructure your code as in the following example.
 s.waitForBoot({
 
     SynthDef(\wobble, {
-		var out = \out.kr(0), freq = \freq.kr(440), amp = \amp.kr(0.1);
-		var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
-		var partialsignal = amp*env*SinOsc.ar(3).range(0.5,1);
-		var sig = partialsignal.poll*SinOsc.ar(freq);
-		Out.ar(out, sig!2);
-	}).add;
+        var out = \out.kr(0), freq = \freq.kr(440), amp = \amp.kr(0.1);
+        var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
+        var partialsignal = amp*env*SinOsc.ar(3).range(0.5,1);
+        var sig = partialsignal.poll*SinOsc.ar(freq);
+        Out.ar(out, sig!2);
+    }).add;
 
-	s.sync;
+    s.sync;
 
-	Synth(\wobble);
+    Synth(\wobble);
 });
 )
 ```
@@ -346,16 +346,16 @@ can pass in some arguments. In the following example, the values are printed 30 
 (
 s.waitForBoot({
     SynthDef(\wobble, {
-		var out = \out.kr(0), freq = \freq.kr(440), amp = \amp.kr(0.1);
-		var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
-		var partialsignal = SinOsc.ar(3).range(0.5,1);
-		var sig = amp*env*partialsignal.poll(Impulse.ar(30), "my funky msg")*SinOsc.ar(freq);
-		Out.ar(out, sig!2);
-	}).add;
-	
-	s.sync;
-	
-	Synth(\wobble);
+        var out = \out.kr(0), freq = \freq.kr(440), amp = \amp.kr(0.1);
+        var env = EnvGen.ar(Env.perc(0.01, 2.0), doneAction:Done.freeSelf);
+        var partialsignal = SinOsc.ar(3).range(0.5,1);
+        var sig = amp*env*partialsignal.poll(Impulse.ar(30), "my funky msg")*SinOsc.ar(freq);
+        Out.ar(out, sig!2);
+    }).add;
+    
+    s.sync;
+    
+    Synth(\wobble);
 });
 )
 ```
@@ -382,9 +382,9 @@ s.waitForBoot({
     SynthDef(\sine, {
         var out = \out.kr(0), freq = \freq.kr(440), amp = \amp.kr(0.1);
         var env = EnvGen.ar(Env.perc(0.01, 5.0), doneAction:Done.freeSelf);
-		var partialsignal = SinOsc.ar(3).range(0.5,1);
-		var sig = amp*env*partialsignal.poll(Impulse.ar(30), "my funky msg")*SinOsc.ar(freq);
-		Out.ar(out, sig!2);
+        var partialsignal = SinOsc.ar(3).range(0.5,1);
+        var sig = amp*env*partialsignal.poll(Impulse.ar(30), "my funky msg")*SinOsc.ar(freq);
+        Out.ar(out, sig!2);
     }).add;
 
     s.sync;
