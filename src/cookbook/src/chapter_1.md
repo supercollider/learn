@@ -20,14 +20,10 @@ Some examples to make it clear
 (
 var num = 42;
 var txt = "important message";
-
-num.postln; // 42
 txt.postln; // important message
-
-num.postcs; // 42
+num.postln; // 42
 txt.postcs; // "important message" (note the additional quotes)
-
-num.debug("number"); // number: 42
+num.postcs; // 42 (note no additional quotes) 
 txt.debug("text"); // text: important message
 )
 ```
@@ -42,15 +38,8 @@ case you can `postln` its class.
 
 ```supercollider
 (
-var num = 42;
-var num2 = 42.0;
-var txt = "important message";
 var pat = Pbind(\instrument, \default);
 var player = pat.play;
-num.class.postln; // Integer
-num2.class.postln; // Float
-txt.class.postln; // String
-(num + txt).class.postln; // String
 pat.class.postln; // Pbind
 fork {
     player.class.postln; // EventStreamPlayer
@@ -61,57 +50,58 @@ fork {
 ```
 
 ### Printing intermediate results in complex expressions
+Supercollider forces you to declare your variables at the top of the function definition.
+Sometimes this can be annoying if you want to quickly inspect the values of some variables
+before some later calculations, because it forces you to rewrite your code.
+
 A cool feature of print methods like `postln`, `postcs` and `debug` is the fact that they return the
-object they work on after printing it to the post window. Let's examine why that is a good thing.
+object they work on after printing it to the post window.
 
-By looking at the following code, you might expect to get result 7 as result of the calculation.
-When you run it, however, you find that - surprisingly - it yields 9 instead.
-
-```supercollider
-(
-var num = 1;
-var num2 = 2;
-var num3 = 3;
-(num + num2*num3).postln; // 9 (?!)
-)
-```
-
-If you've programmed in other languages before, you might expect that some weird corruption is going
-on.  Clearly 1 + 2\*3 == 7, not? Your first instinct might be to check if num, num2 and num3 really
-contain the numbers 1,2 and 3. In a suboptimal coding style you might be tempted to write
+Suppose we want to debug the following code
 
 ```supercollider
 (
-var num = 1;
-var num2 = 2;
-var num3 = 3;
-num.debug("num");
-num2.debug("num2");
-num3.debug("num3");
-(num + num2*num3).postln; // 9 (?!)
+var one = 1;
+var two = "2";
+var division = one/two;
+var double = division*2;
+division.debug("division");
 )
 ```
 
-The above calls to debug work as you expect, but they can be written more concise because `debug` returns the
-variable it prints. Here's how you can call `debug` directly in the formula, without the need to introduce
-additional lines of code.
+The division.debug will never be executed, because the initialization of division in the line before
+already crashes. If you want to examine the values of `one` and `two` before the division happens, 
+you could refactor your code to separate the declaration of division from its initialization.
+The more complex the code becomes, the more work this takes.
 
 ```supercollider
 (
-var num = 1;
-var num2 = 2;
-var num3 = 3;
-(num.debug("num") + num2.debug("num2")*num3.debug("num3")).postln; // 9 (?!)
+var one = 1;
+var two = "2";
+var division;
+var double;
+one.postcs;
+two.postcs;
+division = one/two;
+division.debug("division");
+double = division*2;
 )
 ```
-The postln still prints 9, so the debug calls have not influenced the calculations.  In simple
-examples like the above, this "optimization" may seem a little silly, but when you're debugging
-complex calculations, you'll be glad you don't have to restructure your code just to print out some
-intermediate value.
 
-_Spoiler: the actual problem in this case is not some weird memory corruption or compiler bug as you
-might think, but the eccentric operator precedence that SuperCollider uses. It first calculates num
-+ num2, then multiplies the result with num3._
+Because the post and debug family of calls return the object they operate on, you can often avoid rewriting
+your code just for debugging purposes.
+
+```supercollider
+(
+var one = 1;
+var two = "2";
+var division = one.postcs/two.postcs;
+var double = division*2;
+division.debug("division");
+)
+```
+
+_Spoiler: The problem in the code is that you're trying to divide a number by a string._
 
 ### Concatenating messages
 A final family of techniques that can be useful to know in the context of debugging are some different approaches 
@@ -129,11 +119,9 @@ var t2 = "another one";
 var n1 = 2.0;
 var n2 = 3.0;
 (t1 ++ t2).postcs; // "txtanother one"
-(t1 + t2).postcs; // "txt another one"
-(t1 ++ n1).postcs; // "txt2.0"
 (t1 + n1).postcs; // "txt 2.0"
 //(n1 ++ t1).postcs; // ERROR: Message '++' not understood
-(n1 +  t1).postcs; // "2.0 txt"
+(n1 + t1).postcs; // "2.0 txt"
 (n1 + n2).postcs; // 5.0
 ("" ++ n1 + n2).postcs; // "2.0 3.0"
 )
@@ -149,17 +137,6 @@ Another approach to make longer strings is by using a call to `format`. The foll
 var n1=2;
 var n2=3;
 "if you add % to % you get %".format(n1, n2, n1+n2).postln;
-)
-```
-
-`format` returns a string. If you don't need it as a string object for further manipulation, and if
-your only intention was to use it for printing, you could have used `postf` instead.
-
-```supercollider
-(
-var n1=2;
-var n2=3;
-postf("if you add % to % you get %", n1, n2, n1+n2);
 )
 ```
 
@@ -186,7 +163,16 @@ s.waitForBoot({
 });
 )
 
+// output: 
+1 
+0 
+1 
+0 
+1 
+1 
+...
 ```
+
 
 versus
 
@@ -201,6 +187,12 @@ s.waitForBoot({
     ~player = pat2.play;
 });
 )
+
+// output:
+0.01384711265564 
+0.56002390384674 
+0.79622256755829 
+...
 ```
 
 `trace` can be used on any pattern, so you could just as well write the following to observe all
@@ -211,12 +203,18 @@ values produced by the pattern
 s.waitForBoot({
     var pat1 = Pbind(
         \instrument, \default,
-        \dur, Pwhite(0,1,inf).trace,
+        \dur, Pwhite(0,1,inf),
         \midinote, Pbrown(40,70,1,inf)
     );
     ~player = pat1.trace.play;
 });
 )
+
+// output:
+
+( 'instrument': default, 'dur': 1, 'midinote': 43 ) 
+( 'instrument': default, 'dur': 0, 'midinote': 44 ) 
+...
 ```
 
 ## Customized debug messages
@@ -251,6 +249,14 @@ s.waitForBoot({
     ~player = pat1.play;
 });
 )
+
+//output: 
+
+The pattern produces a duration of 0.782435297966 with instrument default
+midi note is set to a Function (this should be wrong because midinote is not known yet)
+The pattern produces a duration of 0.40264010429382 with instrument default
+midi note is set to a Function (this should be wrong because midinote is not known yet)
+...
 ```
 
 Try to move \\midinote before \\myfunnykey in the previous example and observe the difference in
@@ -291,8 +297,8 @@ s.waitForBoot({
 )
 ```
 
-Imagine you want to examine in more detail why wobble wobbles. The call to range(0.5,1) catches your
-attention, and you are curious what values it produces.  By using poll, its value will be printed to
+Imagine you want to examine in more detail why wobble wobbles. The call to `range(0.5,1)` catches your
+attention, and you are curious what values it produces.  By using `poll`, its value will be printed to
 the post window at regular intervals:
 
 ```supercollider
@@ -314,6 +320,12 @@ s.waitForBoot({
     Synth(\wobble); 
 });
 )
+
+// output:
+UGen(MulAdd): 0.750098
+UGen(MulAdd): 0.987736
+UGen(MulAdd): 0.602984
+UGen(MulAdd): 0.603118
 ```
 
 Note that as written above, you only see the output of `SinOsc.ar(3).range(0.5,1)` but not of other
@@ -337,6 +349,12 @@ s.waitForBoot({
     Synth(\wobble);
 });
 )
+
+// output:
+UGen(BinaryOpUGen): 0.000635417
+UGen(BinaryOpUGen): 0.082192
+UGen(BinaryOpUGen): 0.0408766
+UGen(BinaryOpUGen): 0.0332704
 ```
 
 Calling `poll` will print new values with a predefined frequency. If you want more flexibility you
@@ -359,6 +377,12 @@ s.waitForBoot({
     Synth(\wobble);
 });
 )
+
+// output:
+my funky msg: 0.750098
+my funky msg: 0.897103
+my funky msg: 0.987823
+my funky msg: 0.987705
 ```
 
 _Tip: Other ways exist to send data from the server to the language, which allow greater flexibility
