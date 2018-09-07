@@ -68,6 +68,10 @@ be generated in a sub-folder of the ```book``` directory in the root folder.
   files are changed.
 + ```mdbook serve -o``` - Preview the tutorial at ```http:\\localhost:3000```
 
+## Document formatting
+
+The tutorials are written in github's Markdown, which is documented [here](https://guides.github.com/features/mastering-markdown/).
+
 ## Licence
 
 All content in this repository is licensed under a Creative Commons
