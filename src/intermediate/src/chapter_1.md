@@ -119,8 +119,7 @@ new SC user, scsynth is recommended.
 
 Since scsynth and supernova implement much of the same functionality, I will
 use "scsynth" as a shorthand for "scsynth or supernova" throughout these
-tutorials. "The servers" gets a little bit awkward in writing especially since
-most users are working with a single server.
+tutorials.
 
 ## A quick OSC primer
 
@@ -238,11 +237,11 @@ fire off hundreds of Synths per second for something like granular synthesis.
 
 ### Layer 4: Synth order and Groups
 
-As soon as your arrangement of Synths gets complex with multiple Synths
-writing to the same buses, order becomes very important. For example, if you
-have instrument Synths and a separate Synth for an effect, the reverb needs to
-process its audio *after* the effect. `/s_new` has a parameter which allows you
-to insert the Synth relative to another.
+As soon as your arrangement of Synths gets complex with multiple Synths writing
+to the same buses, order becomes very important. For example, if you have
+instrument Synths and a separate Synth for an effect, the effect needs to
+process its audio *after* the instrument. `/s_new` has a parameter which allows
+you to insert the Synth relative to another.
 
 An entirely linear approach to Synth order gets a little bit flimsy the more
 complex the order is. Groups offer a solution for robust, hierarchical Synth
