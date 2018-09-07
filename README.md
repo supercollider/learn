@@ -35,7 +35,7 @@ Now that you have made some changes to your fork, you will want to submit a pull
 1. Navigate to that branch in your fork in github
 1. Click the `New pull request` button next to the branch name near the top left
 1. Ensure that the `base fork` and `base` drop-downs are set to `supercollider/learn` and `master` respectively
-1. Click the `Create pull request button`
+1. Click the `Create pull request' button
 1. Enter a title and comment
 1. Click the `Create pull request` button
 
