@@ -21,7 +21,7 @@ it can be solved. It is perfectly okay to show multiple solutions, but these _mu
 solutions.
 
 ## Forking this repository
-You will need to create a fork of this repository in order to make edits to your fork, and then submit pull requests containing your changes to this repository.
+In order to make edits to the tutorials in this repository, you will first need to fork it. Once you make the edits you must then submit pull requests containing those edits back to this repository.
 1. Create a github account [here](https://github.com/join) if necessary
 1. Login to github [here](https://github.com/login)
 1. Navigate to this page
