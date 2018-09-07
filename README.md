@@ -20,7 +20,13 @@ https://github.com/supercollider/supercollider/wiki/Code-style-guidelines
 
 Cookbook entries should address a particular problem that people might run into and show them how
 it can be solved. It is perfectly okay to show multiple solutions, but these _must_ be practical
-solutions. 
+solutions.
+
+Editing the documentation online
+-------
+Log in as a github user or create an account if necessary. Click the fork link at the top of this page. Github will then create your very own fork of this repository. You are free to edit the pages of this fork.
+
+Make your changes and use the 'Commit changes' text box underneath to commit them.
 
 Requirements
 -------
