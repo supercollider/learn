@@ -22,6 +22,27 @@ Cookbook entries should address a particular problem that people might run into 
 it can be solved. It is perfectly okay to show multiple solutions, but these _must_ be practical
 solutions.
 
+## Forking this repository
+You will need to create a fork of this repository in order to make edits to your fork, and then submit pull requests containing your changes to this repository.
+1. Create a github account [here](https://github.com/join) if necessary
+1. Login to github [here](https://github.com/login)
+1. Navigate to this page
+1. Click the `Fork` link at the top right of the page
+
+Github will create a fork of this repository in your account. You will now be able to clone it and make changes to it like any other git repository.
+
+## Submitting a pull request
+Now that you have made some changes to your fork, you will want to submit a pull request back to this repository. To do so:
+1. Ensure your changes are committed and pushed to a branch in your fork
+1. Navigate to that branch in your fork in github
+1. Click the `New pull request` button next to the branch name near the top left
+1. Ensure that the `base fork` and `base` drop-downs are set to `supercollider/learn` and `master` respectively
+1. Click the `Create pull request button`
+1. Enter a title and comment
+1. Click the `Create pull request` button
+
+You will be redirected to the `supercollider/learn` homepage on github. Your pull request has been submitted and will be considered for inclusion in the repository.
+
 Requirements
 -------
 
