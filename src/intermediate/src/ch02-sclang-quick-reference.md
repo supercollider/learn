@@ -1,4 +1,4 @@
-# Chapter 2: sclang quick start
+# Chapter 2: sclang quick reference
 
 sclang is not a hard language to pick up if you're familiar with the likes of
 JavaScript, Python, Ruby, or Lua. Its object model and syntax are derived from
