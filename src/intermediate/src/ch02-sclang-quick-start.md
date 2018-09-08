@@ -5,8 +5,15 @@ JavaScript, Python, Ruby, or Lua. Its object model and syntax are derived from
 Smalltalk.
 
 We're just going to breeze through sclang basics here. This isn't meant as a
-complete language spec, but just enough information to get you started and
-point out common mistakes and frustrations.
+complete language spec, but just enough information so you can get on
+comfortable footing for writing programs in SC.
+
+Since I'm showing you around a whole gaddang programming language in this
+chapter, it's going to get very long and very dull. As such, this probably
+isn't the most exciting place to start — the beginner's guide is much better if
+you haven't yet written a line of code. But once you start writing more complex
+programs and need a quick reference on how to do basic programming tasks, this
+is the chapter for you.
 
 ## Running code in sclang
 
@@ -99,6 +106,12 @@ A variable name always starts with a *lowercase* Latin letter, then any number
 of characters in `a-z A-Z 0-9 _`. The reserved keywords are quite few:
 
     var arg classvar const pi true false nil inf
+
+These identifiers are valid variable names, but I wouldn't recommend them,
+because then you won't have access to the actual builtins in the local scope:
+
+    this super thisProcess thisFunction thisFunctionDef thisMethod thisThread
+    currentEnvironment topEnvironment
 
 Assigning to variables outside of `var` statements is done in the regular C
 way, like `foo = 3;`. Operators like `+=` are *not* supported in the spirit of
@@ -443,7 +456,8 @@ actual text input, manipulation, and output.
 \validIdentifier2000
 ```
 
-Here are some useful methods:
+Here are some useful methods — any ambiguities can be cleared up by consulting
+the docs:
 
 ```supercollider
 "string".asSymbol
@@ -451,4 +465,5 @@ Here are some useful methods:
 "string".size
 "concaten" ++ "ation"
 "with" + "space" + "in" + "between"
+"You can format %.".format("strings")
 ```
