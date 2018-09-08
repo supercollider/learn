@@ -1,22 +1,23 @@
 # Chapter 1: SuperCollider architecture
 
-Ah, the intermediate book! If you've launched in here, I'm assuming that you
-have a bit of programming experience. We'll move a bit faster and delve
-into far more technical details, and we'll kick off with a very interesting
-part of SuperCollider — its architecture.
-
-SuperCollider is an audio programming language, but there's a lot more to it
-than just a textual interface. More specifically, SuperCollider consists of a
-audio server architected to support for on-the-fly definition and reuse of DSP
-algorithms. Uniquely, the audio is separated from a client, which provides the
-actual sequencing and control.
+SuperCollider is first and foremost an audio programming language, but there's
+a lot more to it than just a textual interface. More specifically,
+SuperCollider consists of a audio server architected to support for on-the-fly
+definition and reuse of DSP algorithms. Uniquely, the audio is separated from a
+client, which provides the actual sequencing and control.
 
 The best way to summarize how SC differs from its peers is that it's not a toy.
 It's robust, efficient, and meant to gracefully handle a wide range of sound
-synthesis architectures no matter how extreme. Every architectural decision has
-been made with these goals in mind.
+synthesis models, no matter how extreme. Design decisions in SC have been made
+with these goals in mind. It's not necessarily perfect software, but if didn't
+do its job pretty dang well, I wouldn't be here writing this tutorial.
 
-## Design goals of SC
+In this chapter, we'll discuss specific details of server-client separation and
+how the server works, and explain why they are important. We won't get very
+deep into the implementation of SC — just the architecture that you, the user,
+have to work with and understand to fully harness the power of the platform.
+
+## Real-time audio constraints
 
 Real-time audio software is under tight time constraints. If a single buffer of
 samples takes too long to compute, a horrible glitch is audible. When you're
@@ -27,6 +28,11 @@ Efficiency is a huge concern for audio software that advertises itself as
 suitable for real time performance. This is true today, and it was especially
 true for computers in 1996. For a lot of software, performance is convenience.
 For real-time audio, performance is reliability.
+
+The little CPU meter that you see on many audio programs, SuperCollider
+included, is an indicator of how fast DSP is happening. If CPU usage is low and
+stable, you can probably rest easy knowing that the program won't glitch out.
+If it's seriously fluctuating, you are in trouble.
 
 SuperCollider's server not only needs to be efficient, but it needs to be
 flexible. You have to be able to send it arbitrary sound synthesis networks on
@@ -63,11 +69,11 @@ running on a different machine.
 Some programmers come to SuperCollider and are understandably highly skeptical
 of the idea of learning a new programming language, especially one that was
 designed in the 90's. And I won't mince words with you: sclang is far from
-perfect. It has aged better than some of its contemporaries, but has some
-really odd design decisions and long-standing limitations. With SuperCollider's
-server-client architecture, why not leave the langauge behind and use an
-established one? After all, others have written clients for SC in Scala,
-Python, Lua, Haskell, and many other languages.
+perfect. It has aged better than some of its contemporaries in the computer
+music sphere, but has some really odd design decisions and long-standing
+limitations. Due to server-client separation, others have written clients for
+SC in Scala, Python, Lua, Haskell, and many other familiar languages. Why
+should you bother with sclang?
 
 First off, sclang is "soft real-time safe." sclang isn't under the constraints
 of an audio thread like scsynth is, but it does need to sequence events with
@@ -102,15 +108,15 @@ or give help. Most SC users are sclang users, and that's a very important
 network effect if you're new to the platform.
 
 Don't get me wrong ­— I'm not here to condemn alternate clients and the hard
-work that goes into them. I'm sure you'll like some of them better than than
-sclang. But especially for people new to SC, sclang is strongly recommended.
+work that goes into them. I'm sure you'll like some of them better than sclang.
+But especially for people new to SC, sclang is strongly recommended.
 
 ## The servers
 
 The SuperCollider server programs are *scsynth* and *supernova*. They both do
 roughly the same thing. supernova is a newer, ground-up rewrite of scsynth that
-adds support for efficient parallel processing on multi-core CPUs (explicitly
-invoked using `ParGroup`).
+adds support for efficient parallel processing on multi-core CPUs, which we'll
+discuss later in this chapter.
 
 Both are actively maintained, but supernova is more experimental and buggy due
 to its younger age. Furthermore, supernova is not supported on Windows yet, and
@@ -154,12 +160,12 @@ A simple real-time modular audio application might have the ability to create
 and destroy some pre-fab audio processing nodes on the fly, and functionality
 to modulate and rewire them.
 
-It seems nice. Unfortunately, in the real world, a naive implementation of this
-formula really starts to buckle. Musicians want polyphony — spawning the same
-synthesis algorithms over and over again from a template like on a keyboard
-synthesizer. The ability to efficiently define and reuse DSP algorithms is a
-rarely mentioned, but very important place where SC really outshines its
-modular competitors.
+It seems nice. Unfortunately, a naive implementation of this formula really
+starts to buckle when put under real-world conditions. Musicians want polyphony
+— spawning the same synthesis algorithms over and over again from a template
+like on a keyboard synthesizer. The ability to efficiently define and reuse DSP
+algorithms is a rarely mentioned, but very important area where SC really
+shines.
 
 In this section, we'll look at scsynth's unique hierarchical approach to
 scaffolding of modular audio processing.
@@ -257,4 +263,13 @@ supernova has a special feature known as a "parallel group" (`ParGroup`) where
 you *don't* care about order, and instead giving supernova a chance to split
 the Synths' workload across different threads. Since many musical applications
 involve separate, superimposed sound events that don't interact with each other
-(multiple tracks, polyphony), this can result in tremendous CPU improvements.
+(multiple tracks, polyphony), this can result in tremendous CPU improvements
+when used properly.
+
+## Conclusion
+
+SuperCollider built unlike pretty much any other audio software out there, but
+a lot of its quirky designs are well justified for its goals as an efficient
+and flexible sound synthesis platform. The language and server are built from
+the ground up for real-time safety, and the `SynthDef`/`Synth` distinction
+allows for arbitrary polyphony with low overhead.
