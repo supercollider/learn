@@ -20,7 +20,6 @@
   - [Write a Melody](ch02-01-melody.md)
   - [Syncopation & Articulation](ch02-02-artic.md)
   - [Add a Chord Progression - intro to arrays](ch02-03-chords.md)
-  - [Verse Chorus Verse](ch02-04-verse-chorus.md)
 
 - [Interlude - A simple arrangement](interlude-01-simple-song.md)
 
