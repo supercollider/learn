@@ -22,7 +22,7 @@ you will hear a simple C major scale.
 Whenever you successfully evaluate a piece of code in SuperCollider, this window will give you a
 little bit of feedback about what just happened. Don't worry yet about what that means.
 
-#Didn't Hear Anything?
+# Didn't Hear Anything?
 
 If you see something different then there was probably something wrong with what you just typed in.
 Check it again, paying careful attention to placement of brackets and commas. In particular
