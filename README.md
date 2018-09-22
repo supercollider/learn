@@ -1,4 +1,4 @@
-# Super Collider Tutorials
+# SuperCollider Tutorials
 The repository for the official SuperCollider online tutorial and reference information. Currently
 this is in the early stages of development.
 
