@@ -20,12 +20,11 @@
   - [Write a Melody](ch02-01-melody.md)
   - [Syncopation & Articulation](ch02-02-artic.md)
   - [Add a Chord Progression - intro to arrays](ch02-03-chords.md)
-  - [Verse Chorus Verse](ch02-04-verse-chorus.md)
 
 - [Interlude - A simple arrangement](interlude-01-simple-song.md)
 
 - [Chapter 3 - Simple Synthesizers](ch03-00-simple-synth.md)
-  - [A Basic Subtractive Saw Synth](ch03-01-saw-synth.md)
+  - [A Basic Subtractive Synth](ch03-01-subtract-synth.md)
   - [Some modulation](ch03-02-lfo-synth.md)
   - [Basic Additive Synthesis - emphasize arrays here](ch03-03-additive.md)
   - [Basic AM Synthesis](ch03-04-am-synth.md)
