@@ -64,53 +64,6 @@ between audio processing and control, allowing for all manner of alternate
 clients, alternate servers, multiple clients, multiple servers, and servers
 running on a different machine.
 
-## sclang: what's so special about it?
-
-Some programmers come to SuperCollider and are understandably highly skeptical
-of the idea of learning a new programming language, especially one that was
-designed in the 90's. And I won't mince words with you: sclang is far from
-perfect. It has aged better than some of its contemporaries in the computer
-music sphere, but has some really odd design decisions and long-standing
-limitations. Due to server-client separation, others have written clients for
-SC in Scala, Python, Lua, Haskell, and many other familiar languages. Why
-should you bother with sclang?
-
-First off, sclang is "soft real-time safe." sclang isn't under the constraints
-of an audio thread like scsynth is, but it does need to sequence events with
-musically accurate rhythm under normal conditions, so it is written with
-features like real-time safe garbage collection. Few interpreted languages are
-designed with this in mind (Lua is a major one).
-
-Second, sclang has a feature known as multichannel expansion. These three lines
-are identical:
-
-    // Naive way:
-    [SinOsc.ar(440), SinOsc.ar(660), SinOsc.ar(880)]
-
-    // "Don't Repeat Yourself" way, like in most programming languages:
-    [440, 660, 880].collect { |freq| SinOsc.ar(freq) };
-
-    // Best way, using multichannel expansion:
-    SinOsc.ar([440, 660, 880])
-
-Most programming languages would at best offer the second syntax. But the third
-one is true idiomatic sclang, and it's more terse and elegant. I know you may
-be thinking that focusing on syntax is shallow, but this makes a *huge*
-difference when actually working on sound synthesis in your artistic practice.
-Being able to duplicate any part of a sound synthesis graph with ease gives
-sclang a convenience advantage over both ordinary programming languages and
-graphical dataflow languages.
-
-Finally, if you are a SuperCollider user, you should be aware that sclang is
-the #1 SuperCollider client. By only learning an alternate client, you are
-distancing yourself from the SC community and limiting your ability to receive
-or give help. Most SC users are sclang users, and that's a very important
-network effect if you're new to the platform.
-
-Don't get me wrong ­— I'm not here to condemn alternate clients and the hard
-work that goes into them. I'm sure you'll like some of them better than sclang.
-But especially for people new to SC, sclang is strongly recommended.
-
 ## The servers
 
 The SuperCollider server programs are *scsynth* and *supernova*. They both do
