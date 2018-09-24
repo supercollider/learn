@@ -1,1 +1,0 @@
-# Responding to MIDI input
