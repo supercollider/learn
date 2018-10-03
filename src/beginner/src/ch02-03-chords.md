@@ -114,14 +114,13 @@ var a = [60, 60, 67, 67, 69, 69, 67, 65, 65, 64, 64, 62, 62, 60];
 var b = [67, 67, 65, 65, 64, 64, 62];
 
 var prog = Pbind(
-  \octave, 5,
-  \degree, progA ++ progB ++ progB,
-  \dur, Pseq([4, Pseq([2], 14), 4, Pseq([2], 6)]));
+	\octave, 5,
+	\degree, progA ++ progB ++ progB,
+	\dur, Pseq([4, Pseq([2], 14), 4, Pseq([2], 6)]));
 
 var melody = Pbind(
-  \octave, 6,
-  \midinote, Pseq(a) ++ Pseq(b, 2) ++ Pseq(a),
-  \dur, Pseq([1, 1, 1, 1, 1, 1, 2], 6),
+	\midinote, (Pseq(a) ++ Pseq(b, 2) ++ Pseq(a)) + 12,
+	\dur, Pseq([1, 1, 1, 1, 1, 1, 2], 6),
 );
 
 Ppar([melody, prog]).play
