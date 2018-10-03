@@ -191,7 +191,6 @@ Pbind(
   \dur, Pseq([1, 1, 1, 1, 1, 1, 2], 6)
 ).play
 )
-)
 ```
 
 So by passing in a second value to Pseq (separated from the array by a ```,```) we were able to
