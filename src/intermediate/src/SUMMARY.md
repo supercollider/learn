@@ -1,5 +1,6 @@
-# The Programmer's Guide to SuperCollider
+# Intermediate SuperCollider
 
-- [Introduction](ch00-introduction.md)
-- [Chapter 1 - SuperCollider Architecture](ch01-supercollider-architecture.md)
-- [Chapter 2 - sclang quick reference](ch02-sclang-quick-reference.md)
+- [Introduction](introduction.md)
+- [SuperCollider Architecture](supercollider-architecture.md)
+- [sclang quick reference](sclang-quick-reference.md)
+- [Composing in SuperCollider](composing-in-supercollider.md)

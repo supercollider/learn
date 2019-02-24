@@ -1,4 +1,4 @@
-# Chapter 1: SuperCollider architecture
+# SuperCollider architecture
 
 SuperCollider is first and foremost an audio programming language, but there's
 a lot more to it than just a textual interface. More specifically,
