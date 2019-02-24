@@ -1,8 +1,8 @@
 [book]
-authors = ["Cian O'Connor"]
+authors = ["Cian O'Connor", "Nathan Ho"]
 multilingual = false
 src = "src"
-title = "A Beginners Guide to SuperCollider"
+title = "SuperCollider by Example"
 
 [build]
 build-dir = "../../books/beginner"

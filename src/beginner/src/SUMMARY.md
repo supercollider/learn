@@ -1,9 +1,6 @@
 # SuperCollider By Example
 
-- [Introduction](ch00-00-introduction.md)
-    - [Why Use SuperCollider?](ch00-01-why-supercollider.md)
-    - [The Purpose of this Tutorial](ch00-02-purpose.md)
-    - [Focus of the Tutorial](ch00-03-focus.md)
+- [Introduction](ch00-introduction.md)
 
 ## Getting started
 
