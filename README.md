@@ -16,6 +16,8 @@ Documents should have a max line length of 100 columns and be written in markdow
 Code should follow the SuperCollider style guidelines here:
 https://github.com/supercollider/supercollider/wiki/Code-style-guidelines
 
+We have provided [additional style guidelines](supercollider-style-guidelines.md) specific to this tutorial.
+
 Cookbook entries should address a particular problem that people might run into and show them how
 it can be solved. It is perfectly okay to show multiple solutions, but these _must_ be practical
 solutions.

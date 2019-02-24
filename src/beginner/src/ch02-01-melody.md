@@ -22,7 +22,7 @@ you will hear a simple C major scale.
 Whenever you successfully evaluate a piece of code in SuperCollider, this window will give you a
 little bit of feedback about what just happened. Don't worry yet about what that means.
 
-# Didn't Hear Anything?
+#Didn't Hear Anything?
 
 If you see something different then there was probably something wrong with what you just typed in.
 Check it again, paying careful attention to placement of brackets and commas. In particular
@@ -190,7 +190,6 @@ Pbind(
   \midinote, Pseq([60, 60, 67, 67, 69, 69, 67, 65, 65, 64, 64, 62, 62, 60,67, 67, 65, 65, 64, 64, 62,67, 67, 65, 65, 64, 64, 62,60, 60, 67, 67, 69, 69, 67, 65, 65, 64, 64, 62, 62, 60]),
   \dur, Pseq([1, 1, 1, 1, 1, 1, 2], 6)
 ).play
-)
 )
 ```
 
@@ -361,7 +360,7 @@ the 4th degree of the C major scale, then we need to pass in a major scale and a
 that we're using the C major scale. C lydian built upon `C4` would require a root of `F` and the
 octave value of `4` and would look like this:
 
-```
+``` 
 (
 var a = Pseq([0, 0, 4, 4, 5, 5, 4, 3, 3, 2, 2, 1, 1, 0]);
 var b = Pseq([4, 4, 3, 3, 2, 2, 1]);
