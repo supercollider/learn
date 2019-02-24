@@ -40,9 +40,12 @@ Second, sclang has a feature known as multichannel expansion. These three lines 
 Most programming languages would at best offer the second syntax. But the third one is true
 idiomatic sclang, and it's more terse and elegant. I know you may be thinking that focusing on
 syntax is shallow, but this makes a *huge* difference when actually working on sound synthesis in
-your artistic practice. Being able to duplicate any part of a sound synthesis graph with ease gives
-sclang a convenience advantage over both ordinary programming languages and graphical dataflow
-languages.
+your artistic practice.
+
+I'm not claiming that multichannel expansion as implemented in sclang has been executed perfectly,
+but it's still tremendously convenient a lot of the time. Being able to duplicate any part of a
+sound synthesis graph easily give sclang an advantage over many other programming languages and
+graphical dataflow languages.
 
 Finally, if you are a SuperCollider user, you should be aware that sclang is the #1 SuperCollider
 client. By only learning an alternate client, you are distancing yourself from the SC community and
@@ -61,9 +64,9 @@ from the IDE can be pretty weird and offputting. As a refresher, you write Super
 thing at once, individual lines are run using Shift+Enter, and blocks of code delimited by
 parentheses are run using Ctrl+Enter (Cmd+Enter on macOS).
 
-Weird? Yes. But it's less weird once you realize that the **IDE is a glorified REPL**, just like the
-Python interactive interpreter. It's just that REPL is the most common way of interacting with
-SuperCollider.
+Weird? Yes. But it's less weird once you realize that the **IDE is a glorified REPL**. The workflow
+will be familiar if you've ever used Jupyter or an interactive interpreter like Python's. It's just
+that REPL is the most common way of interacting with SuperCollider.
 
 It's actually possible — and may be preferable — to run sclang like an ordinary program from the
 command line. This can be done by running
@@ -77,13 +80,13 @@ Your file needs to be set up in a special way, however. The parentheses used to 
 for interactive execution will not work as expected, and will usually cause syntax errors. The file
 should be a single parenthetical block, although without the enclosing parentheses. By default,
 sclang does not exit at the end of file evaluation, so you need to manually run, e.g., `0.exit` to
-quit with return code 0.
+quit with return code 0. [TODO: provide an actual example!]
 
 Why use REPL in the IDE if sclang can mostly be run as a normal programming language? Although the
 workflow is unusual compared to programming environments, it's not without precedent when viewed as
 artistic audio software. In your average modular synth software or hardware, the "work interface"
 and the "performance interface" are the same. Same for SC: you write your code and you run your code
-in the same place.
+in the same place. [TODO: clarify]
 
 One obvious reason to use the IDE is if you incorporate live coding into your work — it's a fully
 capable live coding interface, and can even be augmented with custom behavior specifically for that
