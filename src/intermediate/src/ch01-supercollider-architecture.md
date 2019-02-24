@@ -139,7 +139,8 @@ As you might know from the beginner tutorial, SC signals aren't just audio —
 some are control-rate signals, conventionally denoted `.kr` in UGen classes.
 These signals define only one sample per block. Performing arithmetic
 operations on such signals is significantly faster since there's simply less
-signal to deal with.
+signal to deal with. In DSP parlance, control rate signals are "downsampled
+processing."
 
 Block-based sample processing is fairly common in well-written audio software,
 but marking some signals as audio and others as control is a somewhat SC-unique
@@ -147,10 +148,9 @@ deal.
 
 ### Layer 2: UGens and Units
 
-UGens ("unit generators") are like classes, and units are their instances. A
-UGen is a chunk of DSP code, such as an oscillator or filter. When
-instantiated, it creates a unit that processes input signals and produces
-output signals.
+A UGen (unit generator) is a chunk of DSP code, such as an oscillator or filter.
+When instantiated, it creates a *unit*, which is an object that processes input
+signals and produces output signals.
 
 In compiled form, UGens physically live in *plugins*, which are shared
 libraries (`.scx` files on Windows and macOS, `.so` files on Linux). When
@@ -206,11 +206,6 @@ An entirely linear approach to Synth order gets a little bit flimsy the more
 complex the order is. Groups offer a solution for robust, hierarchical Synth
 order, and the hierarchy formed is known as the "server tree," and the Synths
 and Groups within as "nodes."
-
-Groups also offer a very handy feature for polyphonic work: they also accept
-`/n_set` commands, which are broadcasted to all their child nodes. This is
-extremely useful if you want to modulate a parameter on a dozen similar nodes
-in a polyphonic context.
 
 supernova has a special feature known as a "parallel group" (`ParGroup`) where
 you *don't* care about order, and instead giving supernova a chance to split
